@@ -1,2 +1,7 @@
 # SumatraPDF-Extras
-Different to SumatraPDF-Plus (External Viewers) these are Enhanced Page Functions generally inside SumatraPDF WV2
+Different to SumatraPDF-Plus (generally using External Viewers or internal CMD) these are Enhanced Web.js functions generally inside SumatraPDF WV2 (although they too may be loaded via internal or external CMD)
+
+These have been tested in slow Atom 2GB NB x32 (using Windows 7 SP1 + WebView2) and also proven in Windows 10x64 sandbox. They may not all work in SumatraPDF NG but should work in Org. 3.7.##### after time of testing (currently 3.7.24566)
+
+First simple test example is an Image Book Maker (Modified especially from ...) Adapted so you can use in the WebView to build CBZ comics or a Photo Album or Images of documents.
+![ImageBook.png](https://github.com/GitHubRulesOK/SumatraPDF-Extras/blob/main/images/ImageBook.png)
