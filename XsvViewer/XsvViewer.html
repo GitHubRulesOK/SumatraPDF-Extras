@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>xSV (.csv / .tsv) Viewer</title></head>
+<!--  This is a "Proof of Concept" file for you to adjust to own usage. Read the docs!
+
+      For sumatraPDF 3.6 or earlier use a standalone ExternalViewer shortcut or lnk like 
+      C:\Windows\System32\cmd.exe /r start=msedge --app="c:\path to this\load-xsv.html"
+
+      For SumatraPDF 3.7 (Windows 7x32 or newer) with WebView 2 use a shortcut icon to
+      open this file e.g. SumatraPDF -reuse-instance "c:\path to this\XsvViewer.html" 
+
+      Needs = https://github.com/mholt/PapaParse/ (min.js) in same folder as this HTML file.
+      It could be embeded below but easier to update 5.7.0 if it is external. For csv any
+      desired commas need to be wrapped in " but tabs are ignored, see example files
+      I,want,to,be,able,to,open,csv,and,tsv,"files,",with,"	SumatraPDF","."
+
+      First HTML Load may be slow to settle but loading data should then be faster.
+ -->
+<body>
+    <h2>Load CSV or TSV File</h2>
+    <input type="file" id="csvFile" accept=".csv,.tsv,text/csv,text/tab-separated-values">
+    <div id="status"></div>
+    <div id="output"></div>
+
+    <script>
+    document.getElementById("csvFile").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    document.getElementById("status").textContent =
+        "Reading " + file.name + "...";
+    // Detect CSV or TSV from file extension
+    const extension = file.name.split(".").pop().toLowerCase();
+    const delimiter = extension === "tsv" ? "\t" : ",";
+
+    Papa.parse(file, {
+        header: false,
+        delimiter: delimiter,
+        skipEmptyLines: true,
+        dynamicTyping: true,
+        complete: function(results) {
+            const data = results.data;
+            const output = document.getElementById("output");
+            if (!data.length) {
+                output.textContent = "No data found.";
+                return;
+            }
+            const table = document.createElement("table");
+            table.style.borderCollapse = "collapse";
+            table.style.width = "100%";
+            // Header row: numbered columns
+            const thead = document.createElement("thead");
+            const headerRow = document.createElement("tr");
+            data[0].forEach((_, index) => {
+                const th = document.createElement("th");
+                th.textContent = "Column " + (index + 1);
+                th.style.backgroundColor = "#eeeeee";
+                th.style.textAlign = "left";
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            // All CSV/TSV rows, including the first
+            const tbody = document.createElement("tbody");
+            data.forEach(record => {
+                const row = document.createElement("tr");
+                record.forEach(value => {
+                    const td = document.createElement("td");
+                    td.textContent = value ?? "";
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+            output.innerHTML = "";
+            output.appendChild(table);
+            document.getElementById("status").textContent =
+                data.length + " records loaded from " + file.name;
+        },
+        error: function(error) {
+            document.getElementById("status").textContent =
+                "Error: " + error.message;
+        }
+    });
+});
+</script>
+    <script src="papaparse.min.js"></script>
+    <!-- This is a dependency that should be in the same folder as ths HTML file.
+         Tested with Papa Parse v5.7.0 https://github.com/mholt/PapaParse -->
+</body></html>
