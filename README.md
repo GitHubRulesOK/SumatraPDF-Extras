@@ -8,5 +8,5 @@ First simple test example is an [Image Book Maker](https://github.com/GitHubRule
 
 ## CSV / TSV  XsvViewer
 To see how an EXTRA simple method can be written as HTML and js see https://github.com/mholt/PapaParse.  
-Which is demonstrated here in CSV or TSV (XsvViewer) as requested in https://github.com/sumatrapdfreader/sumatrapdf/issues/6449
+Which is demonstrated here in [CSV or TSV (XsvViewer)](https://github.com/GitHubRulesOK/SumatraPDF-Extras/tree/main/XsvViewer) as requested in https://github.com/sumatrapdfreader/sumatrapdf/issues/6449
 ![XcvViewer-load.png](https://github.com/GitHubRulesOK/SumatraPDF-Extras/blob/main/images/XsvViewer-load.png)
