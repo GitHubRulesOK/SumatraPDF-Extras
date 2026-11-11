@@ -1,0 +1,7 @@
+window.FLIPBOOK_CONFIG = {
+  title: "Image Book",
+  subtitle: "Sample flipping image book",
+  defaultImages: [
+    "images/1.jpg"
+  ]
+};
