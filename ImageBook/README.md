@@ -1,4 +1,5 @@
 # Image Book Demonstration  
+![ImageBook.png](https://github.com/GitHubRulesOK/SumatraPDF-Extras/blob/main/images/ImageBook.png)
 
 SumatraPDF must be recent 3.7 or NG with WebViewer2 installed in Windows 7/8/10/11 NOTE: SumatraPDF itself can be EITHER portable OR installed.  
 
